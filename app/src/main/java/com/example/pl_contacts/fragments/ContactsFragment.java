@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 
 import com.example.pl_contacts.R;
 import com.example.pl_contacts.adapters.ContactsAdapter;
+import com.example.pl_contacts.handlers.DBHelper;
 import com.example.pl_contacts.instances.Contact;
 
 import java.util.ArrayList;
@@ -30,18 +31,24 @@ public class ContactsFragment extends Fragment {
     private ContactsAdapter contactsAdapter;
     private List<Contact> contactList;
 
+    DBHelper dbHelper;
+
     private void init() {
         contactsRv = view.findViewById(R.id.rv_contacts);
 
+        dbHelper = new DBHelper(getActivity());
 
-        contactList = new ArrayList<>();
 
-        for (int i = 0; i < 15; i++) {
-            Contact contact = new Contact();
-            contact.setFirstName("Matin");
-            contact.setLastName("Daryanosh Barahouei");
-            contactList.add(contact);
-        }
+        contactList = dbHelper.getAllContacts();
+
+        dbHelper.getContact(1);
+
+//        for (int i = 0; i < 15; i++) {
+//            Contact contact = new Contact();
+//            contact.setFirstName("Matin");
+//            contact.setLastName("Daryanosh Barahouei");
+//            contactList.add(contact);
+//        }
 
         contactsAdapter = new ContactsAdapter(getActivity(), contactList);
 

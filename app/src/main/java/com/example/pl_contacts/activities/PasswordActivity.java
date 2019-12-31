@@ -10,8 +10,10 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pl_contacts.R;
+import com.example.pl_contacts.handlers.DBHelper;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class PasswordActivity extends AppCompatActivity {
@@ -19,6 +21,8 @@ public class PasswordActivity extends AppCompatActivity {
     TextInputEditText passwrodEt;
     ImageView enterImg;
     TextView woringPassTxt;
+
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,21 @@ public class PasswordActivity extends AppCompatActivity {
         passwrodEt = findViewById(R.id.et_password);
         enterImg = findViewById(R.id.img_enter);
         woringPassTxt = findViewById(R.id.txt_wrong_password);
+
+        dbHelper = new DBHelper(this);
+
+//        boolean insert = dbHelper.insertPhoneNumber(1, "09320439", "mobile");
+//        dbHelper.insertPhoneNumber(1, "32942", "mobile");
+//        dbHelper.insertPhoneNumber(1, "38924", "mobile");
+
+//        boolean insert = dbHelper.insertContacts("matin", "barahouei", "matdb",
+//                "zahedan", "zabol", "matingriems.ir", "matingrimes@yahoo.com",
+//        "1375/11/21", 0);
+//        if (insert) {
+//            Toast.makeText(getApplicationContext(), "inserted", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+//        }
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
