@@ -1,5 +1,6 @@
 package com.example.pl_contacts.instances;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Contact {
@@ -7,7 +8,7 @@ public class Contact {
     private String firstName;
     private String lastName;
     private int image;
-    private List<Number> numberList;
+    private List<Number> numberList = new ArrayList<>();
     private String groupName;
     private String nickName;
     private String workPlaceAddress;

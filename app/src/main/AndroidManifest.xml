@@ -16,21 +16,16 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".activities.PasswordActivity"
             android:windowSoftInputMode="adjustPan|adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.GroupDetailsActivity"></activity>
         <activity android:name=".activities.ContactDetailsActivity" />
         <activity android:name=".activities.AddContactActivity" />
         <activity android:name=".activities.MainActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <provider

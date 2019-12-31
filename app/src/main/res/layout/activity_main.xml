@@ -172,4 +172,83 @@
     </androidx.cardview.widget.CardView>
 
 
+    <RelativeLayout
+        android:id="@+id/container_multi_select"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:visibility="invisible"
+        >
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            app:srcCompat="@drawable/ic_cancel"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+
+
+        <TextView
+            android:id="@+id/txt_number_of_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7"
+            android:fontFamily="@font/productsans_regular"
+            android:textSize="22dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="32dp"
+            android:layout_toRightOf="@id/img_close"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="selected"
+            android:fontFamily="@font/productsans_regular"
+            android:textSize="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/txt_number_of_selected"
+            />
+
+        <ImageView
+            android:id="@+id/img_delete_selected"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_delete"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/img_select"
+            android:layout_marginRight="24dp"
+            />
+
+        <ImageView
+            android:id="@+id/img_select"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_select"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            />
+
+        <ImageView
+            android:id="@+id/img_unselect"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_unselect"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:visibility="invisible"
+            />
+
+
+
+
+
+    </RelativeLayout>
+
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

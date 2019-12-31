@@ -1,7 +1,6 @@
 package com.example.pl_contacts.fragments;
 
 import android.os.Bundle;
-import android.text.BoringLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -11,8 +10,11 @@ import android.widget.ImageView;
 
 import com.example.pl_contacts.R;
 import com.example.pl_contacts.activities.AddContactActivity;
+import com.example.pl_contacts.instances.Number;
 import com.example.pl_contacts.interfaces.EditTextChangeListener;
 import com.example.pl_contacts.interfaces.IdUpdateListener;
+import com.example.pl_contacts.interfaces.RequestNumberListener;
+import com.example.pl_contacts.interfaces.ResponseNumberListener;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.angmarch.views.NiceSpinner;
@@ -24,11 +26,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class AddNumberFragment extends Fragment implements IdUpdateListener {
+public class AddNumberFragment extends Fragment implements IdUpdateListener, RequestNumberListener {
     private View view;
     private NiceSpinner niceSpinner;
-    private TextInputEditText numberTxt;
+    private TextInputEditText numberEt;
     private EditTextChangeListener editTextChangeListener;
+    private ResponseNumberListener responseNumberListener;
     private ImageView closeImg;
 
     private boolean textIsEmpty = true;
@@ -40,8 +43,11 @@ public class AddNumberFragment extends Fragment implements IdUpdateListener {
 
         id = Integer.valueOf(getArguments().getString("viewId"));
         editTextChangeListener = (EditTextChangeListener) getActivity();
+        responseNumberListener = (ResponseNumberListener) getActivity();
+
+
         niceSpinner = view.findViewById(R.id.spinner_type);
-        numberTxt = view.findViewById(R.id.txt_number);
+        numberEt = view.findViewById(R.id.txt_number);
         closeImg = view.findViewById(R.id.img_close);
 
         niceSpinner.attachDataSource(new LinkedList<>(Arrays.asList("Mobile", "Work", "Home", "Work Fax", "Home Fax", "Other")));
@@ -54,7 +60,7 @@ public class AddNumberFragment extends Fragment implements IdUpdateListener {
         init();
 
 
-        numberTxt.addTextChangedListener(new TextWatcher() {
+        numberEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -110,5 +116,10 @@ public class AddNumberFragment extends Fragment implements IdUpdateListener {
         if (this.id == 0) {
             closeImg.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    public void onRequest() {
+        responseNumberListener.onResponse(new Number(niceSpinner.getText().toString(), numberEt.getText().toString()), this.id);
     }
 }

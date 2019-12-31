@@ -7,29 +7,40 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.pl_contacts.R;
 import com.example.pl_contacts.adapters.ViewPagerAdapter;
 import com.example.pl_contacts.fragments.ContactsFragment;
 import com.example.pl_contacts.fragments.GroupsFragment;
+import com.example.pl_contacts.interfaces.ShowSelectContainerListener;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ShowSelectContainerListener {
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
     CardView addBtn;
+    AppBarLayout appBarLayout;
 
     FrameLayout dialogFocusContainer;
     CardView createGroupContainer;
     TextInputEditText groupEt;
     TextView cancelTxt, OKTxt;
+
+    RelativeLayout multiSelectContainer;
+    TextView numberOfSelectedTxt;
+    ImageView deleteSelectedImg, selectAllImg, unselectAllImg, closeImg;
+
 
     boolean isOnContact = true;
 
@@ -39,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         tabLayout = findViewById(R.id.tablayout);
         viewPager = findViewById(R.id.viewpager);
+        appBarLayout = findViewById(R.id.appbar);
 
         addBtn = findViewById(R.id.btn_add);
 
@@ -47,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
         groupEt = findViewById(R.id.et_rename_group);
         cancelTxt = findViewById(R.id.txt_cancel_renaming);
         OKTxt = findViewById(R.id.txt_ok_renaming);
+
+        multiSelectContainer = findViewById(R.id.container_multi_select);
+        numberOfSelectedTxt = findViewById(R.id.txt_number_of_selected);
+        deleteSelectedImg = findViewById(R.id.img_delete_selected);
+        selectAllImg = findViewById(R.id.img_select);
+        unselectAllImg = findViewById(R.id.img_unselect);
+        closeImg = findViewById(R.id.img_close);
+
+        multiSelectContainer.bringToFront();
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new ContactsFragment(), "contacts");
@@ -119,6 +140,34 @@ public class MainActivity extends AppCompatActivity {
                 dialogFocusContainer.setClickable(false);
             }
         });
+
+
+
+
+        closeImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                multiSelectContainer.setVisibility(View.INVISIBLE);
+                appBarLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+    }
+
+    @Override
+    public void onShowSelectContainer() {
+        multiSelectContainer.setVisibility(View.VISIBLE);
+        appBarLayout.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (multiSelectContainer.getVisibility() == View.VISIBLE) {
+            multiSelectContainer.setVisibility(View.INVISIBLE);
+            appBarLayout.setVisibility(View.VISIBLE);
+        } else {
+            super.onBackPressed();
+        }
 
     }
 }

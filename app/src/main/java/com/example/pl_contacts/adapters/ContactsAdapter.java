@@ -5,13 +5,16 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pl_contacts.R;
 import com.example.pl_contacts.activities.ContactDetailsActivity;
 import com.example.pl_contacts.instances.Contact;
+import com.example.pl_contacts.interfaces.ShowSelectContainerListener;
 
 import java.util.List;
 import java.util.Random;
@@ -22,6 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyViewHolder> {
     private Activity activity;
     private List<Contact> list;
+    ShowSelectContainerListener showSelectContainerListener;
+
     private int[] colors = {R.drawable.background_blue, R.drawable.background_green, R.drawable.background_orange, R.drawable.background_pink,
     R.drawable.background_red, R.drawable.background_yellow, R.drawable.background_purple};
     private String currentLetter = "";
@@ -29,6 +34,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyView
     public ContactsAdapter(Activity activity, List<Contact> list) {
         this.activity = activity;
         this.list = list;
+        showSelectContainerListener = (ShowSelectContainerListener) activity;
     }
 
     @NonNull
@@ -38,7 +44,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         if (!currentLetter.equals(String.valueOf(list.get(position).getFirstName().toCharArray()[0]))) {
             currentLetter = String.valueOf(list.get(position).getFirstName().toCharArray()[0]);
             holder.alphabetTxt.setText(currentLetter);
@@ -55,7 +61,19 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyView
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(activity, ContactDetailsActivity.class);
+                intent.putExtra("id", list.get(position).getId());
                 activity.startActivity(new Intent(activity, ContactDetailsActivity.class));
+            }
+        });
+
+        holder.root.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                showSelectContainerListener.onShowSelectContainer();
+                holder.tickImg.setVisibility(View.VISIBLE);
+                holder.colorImg.setBackgroundResource(R.drawable.background_blue);
+                return true;
             }
         });
 
@@ -70,12 +88,14 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyView
         private RelativeLayout root;
         private ImageView coverImg, colorImg;
         private TextView alphabetTxt, fullNametxt, firstLetterTxt;
+        private ImageView tickImg;
 
         private MyViewHolder(@NonNull View itemView) {
             super(itemView);
             root = itemView.findViewById(R.id.root);
             coverImg = itemView.findViewById(R.id.img_cover);
             colorImg = itemView.findViewById(R.id.img_color);
+            tickImg = itemView.findViewById(R.id.img_tick);
             alphabetTxt = itemView.findViewById(R.id.txt_alphabet);
             fullNametxt = itemView.findViewById(R.id.txt_fullname);
             firstLetterTxt = itemView.findViewById(R.id.txt_first_letter);

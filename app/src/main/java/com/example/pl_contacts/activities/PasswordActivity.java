@@ -40,7 +40,7 @@ public class PasswordActivity extends AppCompatActivity {
 //        dbHelper.insertPhoneNumber(1, "32942", "mobile");
 //        dbHelper.insertPhoneNumber(1, "38924", "mobile");
 
-//        boolean insert = dbHelper.insertContacts("matin", "barahouei", "matdb",
+//        boolean insert = dbHelper.insertContact("matin", "barahouei", "matdb",
 //                "zahedan", "zabol", "matingriems.ir", "matingrimes@yahoo.com",
 //        "1375/11/21", 0);
 //        if (insert) {

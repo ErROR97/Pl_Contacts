@@ -94,7 +94,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_firstname"
+                    android:id="@+id/et_firstname"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="First name"
@@ -125,7 +125,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_lastname"
+                    android:id="@+id/et_lastname"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="Last name"
@@ -147,7 +147,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_nickname"
+                    android:id="@+id/et_nickname"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="Nick name"
@@ -183,7 +183,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_workdplace_address"
+                    android:id="@+id/et_workdplace_address"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="Work Address"
@@ -216,7 +216,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_home_address"
+                    android:id="@+id/et_home_address"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="Home Address"
@@ -238,7 +238,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_email"
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="Email"
@@ -270,7 +270,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_website"
+                    android:id="@+id/et_website"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="Website"
@@ -303,7 +303,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_birthdate"
+                    android:id="@+id/et_birthdate"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="Birth date"

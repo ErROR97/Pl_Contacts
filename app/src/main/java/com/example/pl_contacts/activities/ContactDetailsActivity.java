@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import com.example.pl_contacts.R;
 import com.example.pl_contacts.adapters.NumbersAdapter;
+import com.example.pl_contacts.handlers.DBHelper;
+import com.example.pl_contacts.instances.Contact;
 import com.example.pl_contacts.instances.Number;
 
 import java.util.ArrayList;
@@ -33,13 +35,18 @@ public class ContactDetailsActivity extends AppCompatActivity {
     RelativeLayout headerContainer;
     TextView fullnameTxt, fullnameHeaderTxt;
     ImageView deleteImg, editImg;
+    int id = 0;
 
 
     FrameLayout dialogFocusContainer;
     CardView deleteCotactContainer;
     TextView deleteTxt, cancelTxt;
 
+    DBHelper dbHelper;
+
     public void init() {
+
+        dbHelper = new DBHelper(this);
 
         headerContainer = findViewById(R.id.container_header);
         fullnameHeaderTxt = findViewById(R.id.txt_fullname_header);

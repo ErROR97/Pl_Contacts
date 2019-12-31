@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.pl_contacts.instances.Contact;
+import com.example.pl_contacts.instances.Number;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean insertContacts(String firstname, String lastname, String alias, String workAddress, String homeAddress, String website, String email, String dateOfBirth, int profilePicture){
+    public long insertContact(String firstname, String lastname, String alias, String workAddress, String homeAddress, String website, String email, String dateOfBirth, int profilePicture){
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -83,12 +84,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("dateofbirth", dateOfBirth);
         contentValues.put("profilepicture", profilePicture);
 
-        long response = db.insert(TBL_Contacts, null, contentValues);
-        if (response != -1) {
-            return true;
-        } else {
-            return false;
-        }
+        return db.insert(TBL_Contacts, null, contentValues);
     }
 
 
@@ -117,7 +113,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertPhoneNumber(int contactId, String number, String type) {
+    public long insertPhoneNumber(int contactId, String number, String type) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -125,12 +121,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("type", type);
         contentValues.put("number", number);
 
-        long insert = db.insert(TBL_Numbers, null, contentValues);
-        if (insert != -1) {
-            return true;
-        } else {
-            return false;
-        }
+        return db.insert(TBL_Numbers, null, contentValues);
+
     }
 
     public Contact getContact(int id) {
@@ -138,17 +130,45 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor res = db.rawQuery(
-                "SELECT numbers.number FROM " + TBL_Contacts +
-                " INNER JOIN " + TBL_Numbers + " ON " + "contacts.id = numbers.id "
-//                "WHERE contacts.id = 1;"
+                "SELECT * FROM " + TBL_Contacts +
+                " INNER JOIN " + TBL_Numbers + " ON " + "contacts.id = numbers.id " +
+                " WHERE contacts.id = " + id
                 ,null);
 
-        Log.i("ok shit", "getContact: " + res);
+        contact.setId(res.getInt(0));
+        contact.setFirstName(res.getString(1));
+        contact.setLastName(res.getString(2));
+        contact.setNickName(res.getString(3));
+        contact.setWorkPlaceAddress(res.getString(4));
+        contact.setHouseAddress(res.getString(5));
+        contact.setWebsite(res.getString(6));
+        contact.setEmail(res.getString(7));
+        contact.setBirthDate(res.getString(8));
+        contact.setImage(res.getInt(9));
+        while (res.moveToNext()) {
+            contact.getNumberList().add(new Number(res.getString(11), res.getString(12)));
+        }
+
 
 
 
 
         return contact;
+    }
+
+    public Number getNumber(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery(
+                "SELECT * FROM " + TBL_Numbers
+                ,null);
+
+        while (res.moveToNext()) {
+            Log.i("motherfucker", res.getInt(0) + res.getString(1) + res.getString(2));
+
+        }
+
+        return new Number("fdjl", "fdjsl");
     }
 
 

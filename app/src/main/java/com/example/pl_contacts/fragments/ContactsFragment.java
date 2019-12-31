@@ -41,14 +41,6 @@ public class ContactsFragment extends Fragment {
 
         contactList = dbHelper.getAllContacts();
 
-        dbHelper.getContact(1);
-
-//        for (int i = 0; i < 15; i++) {
-//            Contact contact = new Contact();
-//            contact.setFirstName("Matin");
-//            contact.setLastName("Daryanosh Barahouei");
-//            contactList.add(contact);
-//        }
 
         contactsAdapter = new ContactsAdapter(getActivity(), contactList);
 
