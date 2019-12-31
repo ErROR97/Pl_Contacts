@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    >
+
+    <TextView
+        android:id="@+id/txt_alphabet"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        tools:text="A"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_centerVertical="true"
+        android:textColor="@color/blue"
+        />
+
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/img_cover"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@id/txt_alphabet"
+        android:layout_marginLeft="16dp"/>
+
+    <ImageView
+        android:id="@+id/img_color"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        tools:background="@drawable/background_red"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"
+        android:layout_toRightOf="@id/txt_alphabet"
+        android:layout_marginLeft="16dp"/>
+
+    <TextView
+        android:id="@+id/txt_first_letter"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        tools:text="A"
+        android:visibility="invisible"
+        android:fontFamily="@font/productsans_regular"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:gravity="center"
+        android:layout_toRightOf="@id/txt_alphabet"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_fullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/img_color"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        tools:text="Matin Daryanoosh Barahouei"
+        android:fontFamily="@font/productsans_regular"
+        android:textSize="16dp"
+        />
+
+
+
+</RelativeLayout>

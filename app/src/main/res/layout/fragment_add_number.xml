@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:layout_marginTop="8dp"
+    >
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextInputLayoutStyle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_number"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Phone"
+            android:inputType="number"
+            android:fontFamily="@font/productsans_regular"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/ic_phone"
+        android:layout_alignTop="@id/layout_number"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:srcCompat="@drawable/ic_cancel"
+        android:layout_alignTop="@id/layout_number"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"
+        />
+
+
+
+    <FrameLayout
+        android:id="@+id/frame_type"
+        android:layout_width="135dp"
+        android:layout_height="40dp"
+        android:background="@drawable/thin_black_border"
+        android:layout_below="@id/layout_number"
+        android:layout_alignLeft="@id/layout_number"
+        android:layout_marginTop="8dp"
+        >
+
+        <org.angmarch.views.NiceSpinner
+            android:id="@+id/spinner_type"
+            android:layout_width="130dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/productsans_regular"
+            android:textSize="14dp"
+            app:textTint="@color/blue"
+            />
+
+    </FrameLayout>
+
+</RelativeLayout>

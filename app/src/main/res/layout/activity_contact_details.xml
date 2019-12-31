@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.ContactDetailsActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/container_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        >
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_arrow"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:id="@+id/txt_fullname_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matin Barahouei"
+            android:layout_toRightOf="@id/img_back"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:visibility="invisible"
+            android:textColor="@color/black"
+            android:fontFamily="@font/productsans_regular"
+            android:layout_marginLeft="16dp"
+            />
+
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/ic_delete"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:layout_marginRight="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_toLeftOf="@id/img_delete"
+            app:srcCompat="@drawable/ic_edit_black"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+
+
+    </RelativeLayout>
+
+
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/container_header"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/img_cover"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                />
+
+            <ImageView
+                android:id="@+id/img_color"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/background_red"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                />
+
+
+            <TextView
+                android:id="@+id/txt_first_letter"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="A"
+                android:textSize="36dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/productsans_regular"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                />
+
+            <TextView
+                android:id="@+id/txt_fullname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Matin Barahouei"
+                android:layout_below="@id/img_color"
+                android:layout_marginTop="50dp"
+                android:textSize="28dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_marginLeft="16dp"
+                />
+
+            <ImageView
+                android:id="@+id/img_seperator_1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_grey"
+                android:alpha=".3"
+                android:layout_marginTop="16dp"
+                android:layout_below="@id/txt_fullname"/>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/img_seperator_1"
+                android:layout_marginBottom="60dp">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_numbers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    />
+
+                <ImageView
+                    android:id="@+id/img_seperator_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/light_grey"
+                    android:alpha=".4"
+                    android:layout_marginLeft="50dp"
+                    />
+
+
+
+                <RelativeLayout
+                    android:id="@+id/container_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    >
+
+
+                    <ImageView
+                        android:id="@+id/img_email"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:srcCompat="@drawable/ic_email"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="13dp"/>
+
+
+                    <TextView
+                        android:id="@+id/txt_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="matinrimes@yahoo.com"
+                        android:fontFamily="@font/productsans_regular"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/img_email"
+                        />
+
+
+
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/img_seperator_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/light_grey"
+                    android:alpha=".4"
+                    android:layout_marginLeft="50dp"
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/container_location_work"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    >
+                    
+
+                    <ImageView
+                        android:id="@+id/img_location_work"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:srcCompat="@drawable/ic_location"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="13dp"/>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/img_location_work">
+
+
+                        <TextView
+                            android:id="@+id/txt_location_work"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="zahedan"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textColor="@color/black"
+                            android:textSize="18dp"
+                            android:layout_marginLeft="16dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/lbl_location_work"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Work"
+                            android:fontFamily="@font/productsans_light"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:layout_below="@id/txt_location_work"
+                            android:layout_marginLeft="16dp"
+                            />
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:id="@+id/container_location_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    >
+
+
+                    <ImageView
+                        android:id="@+id/img_location_home"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="13dp"/>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/img_location_home">
+
+
+                        <TextView
+                            android:id="@+id/txt_location_home"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="zabol"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textColor="@color/black"
+                            android:textSize="18dp"
+                            android:layout_marginLeft="16dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/lbl_location_home"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Home"
+                            android:fontFamily="@font/productsans_light"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:layout_below="@id/txt_location_home"
+                            android:layout_marginLeft="16dp"
+                            />
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+                
+
+
+                <ImageView
+                    android:id="@+id/img_seperator_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/light_grey"
+                    android:alpha=".3"
+                    />
+
+                <TextView
+                    android:id="@+id/about_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="About Matin"
+                    android:textSize="14dp"
+                    android:textColorHint="@color/black"
+                    android:fontFamily="@font/productsans_medium"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/container_nickname"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    >
+
+
+                    <ImageView
+                        android:id="@+id/img_nickname"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_person"
+                        android:layout_marginLeft="13dp"/>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/img_nickname">
+
+
+                        <TextView
+                            android:id="@+id/txt_nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Martin"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:layout_marginLeft="16dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/lbl_nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nickname"
+                            android:fontFamily="@font/productsans_light"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:layout_below="@id/txt_nickname"
+                            android:layout_marginLeft="16dp"
+                            />
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/img_seperator_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/light_grey"
+                    android:alpha=".4"
+                    android:layout_marginLeft="50dp"
+                    />
+
+
+                <RelativeLayout
+                    android:id="@+id/container_website"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    >
+
+
+                    <ImageView
+                        android:id="@+id/img_website"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_public"
+                        android:layout_marginLeft="13dp"/>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/img_website">
+
+
+                        <TextView
+                            android:id="@+id/txt_website"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="matingrimes.ir"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:layout_marginLeft="16dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/lbl_website"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Website"
+                            android:fontFamily="@font/productsans_light"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:layout_below="@id/txt_website"
+                            android:layout_marginLeft="16dp"
+                            />
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/img_seperator_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/light_grey"
+                    android:alpha=".4"
+                    android:layout_marginLeft="50dp"
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/container_birthdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    >
+
+
+                    <ImageView
+                        android:id="@+id/img_birthdate"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_date_"
+                        android:layout_marginLeft="13dp"/>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/img_birthdate">
+
+
+                        <TextView
+                            android:id="@+id/txt_birthdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="july 12, 2000"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:layout_marginLeft="16dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/lbl_birthdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Birthday"
+                            android:fontFamily="@font/productsans_light"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:layout_below="@id/txt_birthdate"
+                            android:layout_marginLeft="16dp"
+                            />
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+                
+
+
+            </LinearLayout>
+            
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/container_dialog_focus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:visibility="invisible"
+        android:alpha=".7"/>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/container_delete_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        app:cardCornerRadius="8dp"
+        android:visibility="invisible"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            >
+
+            <TextView
+                android:id="@+id/lbl_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete this Contact?"
+                android:fontFamily="@font/productsans_medium"
+                android:textSize="18dp"
+                android:layout_marginLeft="16dp"
+                />
+
+
+
+            <TextView
+                android:id="@+id/txt_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:textColor="@color/blue"
+                android:textSize="15dp"
+                android:layout_toLeftOf="@id/txt_delete"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_below="@id/lbl_delete"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="24dp"
+                />
+
+            <TextView
+                android:id="@+id/txt_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:textColor="@color/red"
+                android:textSize="15dp"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_below="@id/lbl_delete"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_alignParentRight="true"
+                />
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>

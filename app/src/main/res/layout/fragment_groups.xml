@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.GroupsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_groups"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"/>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/container_empty_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha=".7"
+        android:visibility="invisible"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/img_box"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:srcCompat="@drawable/ic_box"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_box"
+            android:text="No group to show"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/productsans_medium"
+            android:textSize="18dp"
+            >
+
+
+        </TextView>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            app:layout_scrollFlags="scroll|enterAlways|snap" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contacts"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textSize="24dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"/>
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/blue"
+            app:tabSelectedTextColor="@color/blue"
+            app:tabTextColor="@color/light_grey" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btn_add"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:cardCornerRadius="100dp"
+        android:layout_gravity="bottom |right"
+        android:backgroundTint="@color/blue"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        tools:ignore="RtlHardcoded">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:srcCompat="@drawable/ic_add"
+            android:layout_gravity="center"/>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+    <FrameLayout
+        android:id="@+id/container_dialog_focus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:visibility="invisible"
+        android:translationZ="1000dp"
+        android:alpha=".7"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/container_create_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        app:cardCornerRadius="8dp"
+        android:translationZ="2000dp"
+        android:visibility="invisible"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            >
+
+            <TextView
+                android:id="@+id/lbl_rename_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create group"
+                android:fontFamily="@font/productsans_medium"
+                android:textSize="18dp"
+                android:layout_marginLeft="24dp"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_rename_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayoutStyle"
+                android:layout_below="@id/lbl_rename_group"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_rename_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Group name"
+                    android:inputType="textNoSuggestions"
+                    android:fontFamily="@font/productsans_regular"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <TextView
+                android:id="@+id/txt_cancel_renaming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:textColor="@color/blue"
+                android:textSize="15dp"
+                android:layout_toLeftOf="@id/txt_ok_renaming"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_below="@id/layout_rename_group"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="32dp"
+                />
+
+            <TextView
+                android:id="@+id/txt_ok_renaming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OK"
+                android:textColor="@color/blue"
+                android:textSize="15dp"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_below="@id/layout_rename_group"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_alignParentRight="true"
+                />
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

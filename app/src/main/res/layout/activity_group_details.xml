@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.GroupDetailsActivity">
+
+    <RelativeLayout
+        android:id="@+id/container_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        >
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_arrow"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:id="@+id/txt_group_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Family Group"
+            android:layout_toRightOf="@id/img_back"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/productsans_regular"
+            android:layout_marginLeft="16dp"
+            />
+
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/ic_delete"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:layout_marginRight="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_toLeftOf="@id/img_delete"
+            app:srcCompat="@drawable/ic_edit_black"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+
+        <ImageView
+            android:id="@+id/img_add_contact"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_toLeftOf="@id/img_edit"
+            app:srcCompat="@drawable/ic_person_add"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/container_header"
+        android:scrollbars="none"
+        android:overScrollMode="never"/>
+
+
+
+    <RelativeLayout
+        android:id="@+id/container_empty_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha=".7"
+        android:visibility="invisible"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/img_box"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:srcCompat="@drawable/ic_box"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_box"
+            android:text="No Contact to show"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/productsans_medium"
+            android:textSize="18dp"
+            >
+
+
+        </TextView>
+
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/container_dialog_focus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:translationZ="1000dp"
+        android:visibility="invisible"
+        android:alpha=".7"/>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/container_rename_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        app:cardCornerRadius="8dp"
+        android:translationZ="2000dp"
+        android:visibility="invisible"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            >
+
+            <TextView
+                android:id="@+id/lbl_rename_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rename group"
+                android:fontFamily="@font/productsans_medium"
+                android:textSize="18dp"
+                android:layout_marginLeft="24dp"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_rename_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayoutStyle"
+                android:layout_below="@id/lbl_rename_group"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_rename_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Group name"
+                    android:inputType="textNoSuggestions"
+                    android:fontFamily="@font/productsans_regular"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <TextView
+                android:id="@+id/txt_cancel_renaming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:textColor="@color/blue"
+                android:textSize="15dp"
+                android:layout_toLeftOf="@id/txt_ok_renaming"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_below="@id/layout_rename_group"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="32dp"
+                />
+
+            <TextView
+                android:id="@+id/txt_ok_renaming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OK"
+                android:textColor="@color/blue"
+                android:textSize="15dp"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_below="@id/layout_rename_group"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_alignParentRight="true"
+                />
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/container_delete_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        app:cardCornerRadius="8dp"
+        android:translationZ="2000dp"
+        android:visibility="invisible"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            >
+
+            <TextView
+                android:id="@+id/lbl_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete this Group?"
+                android:fontFamily="@font/productsans_medium"
+                android:textSize="18dp"
+                android:layout_marginLeft="16dp"
+                />
+
+
+
+            <TextView
+                android:id="@+id/txt_cancel_deleting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:textColor="@color/blue"
+                android:textSize="15dp"
+                android:layout_toLeftOf="@id/txt_delete_group"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_below="@id/lbl_delete"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="24dp"
+                />
+
+            <TextView
+                android:id="@+id/txt_delete_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:textColor="@color/red"
+                android:textSize="15dp"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_below="@id/lbl_delete"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_alignParentRight="true"
+                />
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+</RelativeLayout>
