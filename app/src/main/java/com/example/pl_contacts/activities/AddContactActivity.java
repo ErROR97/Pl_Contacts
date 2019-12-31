@@ -24,12 +24,18 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pl_contacts.R;
 import com.example.pl_contacts.fragments.AddNumberFragment;
+import com.example.pl_contacts.handlers.DBHelper;
 import com.example.pl_contacts.instances.Contact;
+import com.example.pl_contacts.instances.Number;
 import com.example.pl_contacts.interfaces.EditTextChangeListener;
 import com.example.pl_contacts.interfaces.IdUpdateListener;
+import com.example.pl_contacts.interfaces.RequestNumberListener;
+import com.example.pl_contacts.interfaces.ResponseNumberListener;
+import com.google.android.material.textfield.TextInputEditText;
 
 
 import java.io.File;
@@ -39,12 +45,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class AddContactActivity extends AppCompatActivity implements EditTextChangeListener {
+public class AddContactActivity extends AppCompatActivity implements EditTextChangeListener, ResponseNumberListener {
 
     LinearLayout numbersContainer;
     List<IdUpdateListener> idUpdateListenerList;
     ScrollView scrollView;
     RelativeLayout headerContainer;
+    List<RequestNumberListener> requestNumberListenerList;
+
+    TextInputEditText firstnameEt, lastnameEt, nicknameEt, workplaceAddressEt, homeAddressEt, emailEt, websiteEt, birthdayEt;
+    List<Number> numberList;
+    TextView saveTxt;
 
     CardView changePhotoContainer;
     FrameLayout dialogFocusContainer;
@@ -54,18 +65,26 @@ public class AddContactActivity extends AppCompatActivity implements EditTextCha
     private List<View> viewList;
     private int viewId = 1;
     private int lastId = 0;
+    private long id = 0;
     String pathToFile;
     Contact contact;
+    DBHelper dbHelper;
 
     private void init() {
         viewList = new ArrayList<>();
         idUpdateListenerList = new ArrayList<>();
+        requestNumberListenerList = new ArrayList<>();
         contact = new Contact();
+        numberList = new ArrayList<>();
+
+        dbHelper = new DBHelper(this);
 
         closeImg = findViewById(R.id.img_close);
         numbersContainer = findViewById(R.id.container_numbers);
         scrollView = findViewById(R.id.scrollview);
         headerContainer = findViewById(R.id.container_header);
+
+        saveTxt = findViewById(R.id.txt_save);
 
 
         dialogFocusContainer = findViewById(R.id.container_dialog_focus);
@@ -75,6 +94,15 @@ public class AddContactActivity extends AppCompatActivity implements EditTextCha
         takePhotoTxt = findViewById(R.id.txt_take_photo);
         choosePhotoTxt = findViewById(R.id.txt_choose_photo);
         cancelTxt = findViewById(R.id.txt_cancel_renaming);
+
+        firstnameEt = findViewById(R.id.et_firstname);
+        lastnameEt = findViewById(R.id.et_lastname);
+        nicknameEt = findViewById(R.id.et_nickname);
+        workplaceAddressEt = findViewById(R.id.et_workdplace_address);
+        homeAddressEt = findViewById(R.id.et_home_address);
+        emailEt = findViewById(R.id.et_email);
+        websiteEt = findViewById(R.id.et_website);
+        birthdayEt = findViewById(R.id.et_birthdate);
 
         addFragment();
     }
@@ -143,6 +171,25 @@ public class AddContactActivity extends AppCompatActivity implements EditTextCha
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+
+        saveTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (firstnameEt.getText().length() == 0) {
+                    firstnameEt.requestFocus();
+                    firstnameEt.setError("firstname can not be empty");
+                } else {
+                     id = dbHelper.insertContact(firstnameEt.getText().toString(), lastnameEt.getText().toString(), nicknameEt.getText().toString()
+                            , workplaceAddressEt.getText().toString(), homeAddressEt.getText().toString(), websiteEt.getText().toString(),
+                            emailEt.getText().toString(), birthdayEt.getText().toString(), 0);
+
+                    for (int i = 0; i < requestNumberListenerList.size(); i++) {
+                        requestNumberListenerList.get(i).onRequest();
+                    }
+                }
             }
         });
 
@@ -277,6 +324,18 @@ public class AddContactActivity extends AppCompatActivity implements EditTextCha
 
     public void setOnDataListener(AddNumberFragment fragmentInterfaceListener){
         idUpdateListenerList.add(fragmentInterfaceListener);
+        requestNumberListenerList.add(fragmentInterfaceListener);
     }
 
+    @Override
+    public void onResponse(Number number, int id) {
+        if (id == lastId - 1) {
+            Toast.makeText(getApplicationContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+            for (int i = 0; i < numberList.size(); i++) {
+                dbHelper.insertPhoneNumber(id, numberList.get(i).getNumber(), numberList.get(i).getType());
+            }
+        } else {
+            numberList.add(number);
+        }
+    }
 }
